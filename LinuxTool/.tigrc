@@ -1,0 +1,15 @@
+# color Settings
+color default white black
+color cursor default magenta
+color status white green bold
+color date cyan default
+color delimiter cyan default
+color line-number yellow default
+color diff-header yellow default
+color diff-index cyan default
+color diff-chunk magenta default
+color diff-stat cyan default
+color "Reported-by:" green default
+color graph-commit cyan default
+color grep.file cyan default
+
