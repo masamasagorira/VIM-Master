@@ -102,6 +102,10 @@
 		* https://coriandered.com/ja/posts/previm/<br>
 		* https://blackhawk888.github.io/blog/2018/02/08/vim-markdown/
 
+* vim-lucius<br>
+	* 概要：Vimのカラースキーマを変更する
+	* 参考サイト：https://qiita.com/yamatsum/items/171dd5aaf0bb8f11ec60
+
 <br>.vimrcへの記述例を下記に示す
 ```
 " #######################プラグイン機能########################## 
@@ -118,6 +122,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " markdownのプレビューを表示する
 Plug 'kannokanno/previm'
+" vimのカラースキーマを変更する
+Plug 'jonathanfilip/vim-lucius'
 
 call plug#end()
 
@@ -136,6 +142,14 @@ nnoremap <silent> <C-p> :PrevimOpen<CR>
 " 変更がリアルタイムで反映される
 let g:previm_enable_realtime = 1
 
+" #####vim起動中のテーマ色の表示に関して#####
+colorscheme lucius
+" 現在の設定を破棄してデフォルトの色を設定する
+syntax on
+" 256色対応するよう設定(必要ないかも)
+set t_Co=256
+" 背景色を設定する
+set background=dark
 
 ```
 
