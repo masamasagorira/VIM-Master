@@ -11,6 +11,7 @@
 - [Linuxツールについて](#linuxツールについて)
   - [vim](#vim)
     - [便利コマンド](#便利コマンド)
+    - [便利なプラグイン](#便利なプラグイン)
   - [ctags](#ctags)
   - [tmux](#tmux)
     - [小技](#小技)
@@ -70,6 +71,87 @@
     * ```jobs```：中断中のジョブを確認
     ※ターミナルコマンドにて実行可能
 <br>
+
+### 便利なプラグイン
+参考サイト：https://qiita.com/reireias/items/5364dcaada1a5b88a206<br>
+特に便利だと思ったプラグインの一部を紹介する<br>
+※今回は```vim-plug```をベースにインストールを行った
+
+* nerdtree<br>
+	* 概要：ディレクトリ構造を表示する
+	* 参考サイト：https://qiita.com/zwirky/items/0209579a635b4f9c95ee
+
+* winresizer<br>
+	* 概要：分割したウィンドウサイズの変更を高速に行う
+	* 参考サイト：https://qiita.com/simeji/items/e78cc0cf046acc937226<br>
+
+* vim-fugitive<br>
+	* 概要：vim起動中にgit操作を可能にする
+	* 参考サイト：<br>
+		* https://doruby.jp/users/kurita/entries/fugitive-vim%E3%81%A7vim%E4%B8%8A%E3%81%A7git%E6%93%8D%E4%BD%9C%E3%82%92%E3%81%97%E3%82%88%E3%81%86%EF%BC%81
+		* https://qiita.com/hyshhryk/items/4936c4412daa866daf7d  
+
+* vim-airline<br>
+	* 概要：vim起動中に表示されるstatusバーをカスタマイズする
+	* 参考サイト：<br>
+
+* previm<br>
+	* 概要：編集中のmarkdownのプレビューを表示する<br>
+	※今回はWSLをベースで設定したので注意
+	* 参考サイト：
+		* https://coriandered.com/ja/posts/previm/<br>
+		* https://blackhawk888.github.io/blog/2018/02/08/vim-markdown/
+
+* vim-lucius<br>
+	* 概要：Vimのカラースキーマを変更する
+	* 参考サイト：https://qiita.com/yamatsum/items/171dd5aaf0bb8f11ec60
+
+<br>.vimrcへの記述例を下記に示す
+```
+" #######################プラグイン機能########################## 
+call plug#begin()
+
+" ファイルをtree表示してくれる
+Plug 'scrooloose/nerdtree'
+" windowサイズを高速に変更
+Plug 'simeji/winresizer'
+" vim起動中にgit操作を可能にする
+Plug 'tpope/vim-fugitive'
+" statusバーの表示をカスタマイズ
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" markdownのプレビューを表示する
+Plug 'kannokanno/previm'
+" vimのカラースキーマを変更する
+Plug 'jonathanfilip/vim-lucius'
+
+call plug#end()
+
+" #####nerdtreeに関して#####
+"ctrl+aでtree表示
+nnoremap <silent><C-a> :NERDTreeToggle<CR>
+"treeのdir色を変更
+hi Directory guifg=#FF0000 ctermfg=Cyan
+
+" #####MarkdownPreviewに関して#####
+" 表示ブラウザの設定
+let g:previm_open_cmd = '/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
+let g:previm_wsl_mode = 1
+" Ctrl+pでプレビュー
+nnoremap <silent> <C-p> :PrevimOpen<CR>
+" 変更がリアルタイムで反映される
+let g:previm_enable_realtime = 1
+
+" #####vim起動中のテーマ色の表示に関して#####
+colorscheme lucius
+" 現在の設定を破棄してデフォルトの色を設定する
+syntax on
+" 256色対応するよう設定(必要ないかも)
+set t_Co=256
+" 背景色を設定する
+set background=dark
+
+```
 
 ## ctags
 役割：ソースコード内の任意の関数の定義にジャンプする
